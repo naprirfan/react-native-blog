@@ -3,7 +3,7 @@ import { Text, View, FlatList, Button, StyleSheet, TouchableOpacity } from 'reac
 import { Context } from '../context/BlogContext';
 import { Feather } from '@expo/vector-icons';
 
-const IndexScreen = () => {
+const IndexScreen = ({ navigation }) => {
   const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
   return (
@@ -14,12 +14,14 @@ const IndexScreen = () => {
         keyExtractor={post => post.id} 
         renderItem={({ item }) => {
          return (
-          <View style={styles.row}>
-            <Text style={styles.title}>{item.title}</Text>
-            <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
-              <Feather name="trash" size={24} color="black" />
+            <TouchableOpacity onPress={() => navigation.navigate('Show', { id: item.id })}>
+              <View style={styles.row}>
+                  <Text style={styles.title}>{item.title}</Text>
+                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                  <Feather name="trash" size={24} color="black" />
+                </TouchableOpacity>
+              </View>
             </TouchableOpacity>
-          </View>
          )
         }}
         />
