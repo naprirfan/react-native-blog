@@ -13,7 +13,7 @@ const CreateScreen = ({ navigation }) => {
       <TextInput style={styles.input} value={title} placeholder="Title" onChangeText={setTitle} />
       <Text>Enter Content:</Text>
       <TextInput style={styles.input} value={content} placeholder="Content" onChangeText={setContent} />
-      <Button title="Add blog post" onPress={() => addBlogPost(title, content)} />
+      <Button title="Add blog post" onPress={() => addBlogPost(title, content, () => navigation.navigate('Index'))} />
     </View>
   );
 }
